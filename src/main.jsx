@@ -1,10 +1,21 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import "./styles/index.css"
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client"
+import { ApolloProvider } from "@apollo/client/react"
 import App from "./App.jsx"
+
+const client = new ApolloClient({
+  link: new HttpLink({
+    uri: import.meta.env.VITE_ENDPOINT,
+  }),
+  cache: new InMemoryCache(),
+})
 
 createRoot(document.getElementById("root")).render(
   //<StrictMode>
-  <App />,
+  <ApolloProvider client={client}>
+    <App />,
+  </ApolloProvider>,
   //</StrictMode>,
 )
