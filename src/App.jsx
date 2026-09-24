@@ -1,9 +1,15 @@
 import { gql } from "@apollo/client"
 import { useQuery } from "@apollo/client/react"
-import Header from "./components/layout/Header"
+
+import HomePage from "./components/home/HomePage"
+import Layout from "./components/layout/LayoutIndex"
 
 function App() {
-  return <Header></Header>
+  return (
+    <Layout>
+      <HomePage></HomePage>
+    </Layout>
+  )
 }
 
 export default App
