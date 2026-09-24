@@ -9,8 +9,7 @@ function Header() {
           <Typography
             component="h1"
             variant="h5"
-            fontWeight="bold"
-            style={{ flex: 1 }}
+            sx={{ flex: 1, fontWeight: 700 }}
           >
             وبلاگ نامسو
           </Typography>

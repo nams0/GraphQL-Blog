@@ -1,9 +1,14 @@
-import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
-import "./styles/index.css"
+
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client"
 import { ApolloProvider } from "@apollo/client/react"
 import App from "./App.jsx"
+
+import theme from "./mui/theme.js"
+import { ThemeProvider } from "@mui/material"
+
+import "./styles/fonts.css"
+import "./styles/index.css"
 
 const client = new ApolloClient({
   link: new HttpLink({
@@ -15,7 +20,9 @@ const client = new ApolloClient({
 createRoot(document.getElementById("root")).render(
   //<StrictMode>
   <ApolloProvider client={client}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </ApolloProvider>,
   //</StrictMode>,
 )
