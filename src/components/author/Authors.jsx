@@ -1,3 +1,5 @@
+import React from "react"
+
 import { useQuery } from "@apollo/client/react"
 import { GET_AUTHORS_INFO } from "../../graphql/queries"
 import { Avatar, Grid, Typography, Divider } from "@mui/material"

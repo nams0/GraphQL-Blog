@@ -60,22 +60,22 @@ function CardEL({ title, slug, coverPhoto, author }) {
       <Divider variant="middle" sx={{ margin: "10px" }} />
 
       <CardActions>
-        {/* <Link
+        <Link
           to={`/blogs/${slug}`}
-          state={{ textDecoration: "none", width: "100%" }}
-        > */}
-        <Button
-          variant="outlined"
-          size="small"
-          color="primary"
-          sx={{
-            width: "100%",
-            borderRadius: 1,
-          }}
+          style={{ textDecoration: "none", width: "100%" }}
         >
-          مطالعه مقاله
-        </Button>
-        {/* </Link> */}
+          <Button
+            variant="outlined"
+            size="small"
+            color="primary"
+            sx={{
+              width: "100%",
+              borderRadius: 1,
+            }}
+          >
+            مطالعه مقاله
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   )
