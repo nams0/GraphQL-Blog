@@ -14,7 +14,6 @@ function Blogs() {
     console.log(errors)
     return <p>Error: {errors.message}</p>
   }
-  console.log(data)
   return (
     <Grid container spacing={2}>
       {data.posts.map((post) => (
