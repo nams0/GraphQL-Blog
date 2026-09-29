@@ -24,14 +24,16 @@ function CardEL({ title, slug, coverPhoto, author }) {
         borderRadius: 2,
       }}
     >
-      <CardHeader
-        avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
-        title={
-          <Typography component="p" sx={{ color: "text.secondary" }}>
-            {author.name}
-          </Typography>
-        }
-      />
+      {author && (
+        <CardHeader
+          avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
+          title={
+            <Typography component="p" sx={{ color: "text.secondary" }}>
+              {author.name}
+            </Typography>
+          }
+        />
+      )}
 
       <CardMedia
         component="img"
