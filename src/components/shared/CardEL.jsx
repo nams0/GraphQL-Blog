@@ -12,11 +12,11 @@ import {
 
 import { Link } from "react-router-dom"
 
-function CardEL({ title, slug, coverPhoto, author }) {
+function CardEL({ title, slug, coverPhoto, author, height = "auto" }) {
   return (
     <Card
       sx={{
-        height: 430,
+        height,
         display: "flex",
         flexDirection: "column",
         boxShadow: "rgba(0,0,0,0.1) 0px 4px 12px",
