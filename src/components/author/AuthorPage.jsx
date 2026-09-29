@@ -7,6 +7,7 @@ import { Avatar, Typography } from "@mui/material"
 import sanitizeHtml from "sanitize-html"
 
 import CardEL from "../shared/CardEL"
+import Loader from "../shared/Loader"
 
 function AuthorPage() {
   const { slug } = useParams()
@@ -14,7 +15,7 @@ function AuthorPage() {
     variables: { slug },
   })
 
-  if (loading) return <h3>Loading...</h3>
+  if (loading) return <Loader />
   if (errors) return <h3>We got an error...</h3>
 
   console.log(data)
