@@ -12,7 +12,7 @@ import {
 
 import { Link } from "react-router-dom"
 
-function CardEL({ title, slug, coverPhoto, author, height = "auto" }) {
+function CardEL({ title, slug, coverPhoto, author, height = "370px" }) {
   return (
     <Card
       sx={{
