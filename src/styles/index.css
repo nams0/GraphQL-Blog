@@ -21,3 +21,23 @@ code {
   font-family:
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.MuiInputLabel-root {
+  right: 0 !important;
+  left: auto !important;
+  transform-origin: top right !important;
+}
+
+/* Resting state (empty, not focused) — vertically centered, just inside the right border */
+.MuiInputLabel-outlined {
+  transform: translate(-14px, 16px) scale(1) !important;
+}
+
+/* Shrunk state (focused or filled) — floats up onto the border */
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(-14px, -9px) scale(0.75) !important;
+}
+
+.MuiOutlinedInput-notchedOutline legend {
+  text-align: right;
+}

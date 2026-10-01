@@ -5,6 +5,7 @@ import Loader from "../shared/Loader"
 import { Container, Grid, Typography, Avatar, Box } from "@mui/material"
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded"
 import sanitizeHtml from "sanitize-html"
+import CommentForm from "../comment/CommentForm"
 
 function BlogPage() {
   const { slug } = useParams()
@@ -17,7 +18,7 @@ function BlogPage() {
   if (errors) return <h3>We got an error...</h3>
 
   const {
-    post: { title, coverPhoto, slugPost, author, content },
+    post: { title, coverPhoto, author, content },
   } = data
 
   console.log(data)
@@ -57,7 +58,7 @@ function BlogPage() {
         <Grid size={{ xs: 12 }} sx={{ mt: 6 }}>
           <img
             src={coverPhoto.url}
-            alt={slugPost}
+            alt={slug}
             style={{ width: "100%", borderRadius: 15 }}
           />
         </Grid>
@@ -88,6 +89,9 @@ function BlogPage() {
               __html: sanitizeHtml(content.html),
             }}
           ></div>
+        </Grid>
+        <Grid size={{ xs: 12 }}>
+          <CommentForm slug={slug} />
         </Grid>
       </Grid>
     </Container>
