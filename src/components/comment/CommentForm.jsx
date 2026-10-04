@@ -7,6 +7,12 @@ import { SEND_COMMENT } from "../../graphql/mutations"
 import { ToastContainer, toast } from "react-toastify"
 import { TailSpin } from "react-loader-spinner"
 
+import {
+  validateName,
+  validateEmail,
+  validateText,
+} from "../../utils/validators"
+
 function CommentForm({ slug }) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -29,9 +35,19 @@ function CommentForm({ slug }) {
     },
   })
 
+  const errors = {
+    name: validateName(name),
+    email: validateEmail(email),
+    text: validateText(text),
+  }
+
   const sendHandler = () => {
-    if (name && email && text) sendComment()
-    else toast.warn("لطفا تمامی فیلد ها را پر کنید", { position: "top-center" })
+    const firstError = errors.name || errors.email || errors.text
+    if (firstError) {
+      toast.warn(firstError, { position: "top-center" })
+      return
+    }
+    sendComment()
   }
 
   return (
