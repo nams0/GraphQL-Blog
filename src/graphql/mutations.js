@@ -20,4 +20,14 @@ const SEND_COMMENT = gql`
   }
 `
 
-export { SEND_COMMENT }
+const TOGGLE_POST_BOOKMARK = gql`
+  mutation ToggleBookmark($slug: String!, $isBookmarked: Boolean!) {
+    updatePost(where: { slug: $slug }, data: { isBookmarked: $isBookmarked }) {
+      id
+      slug
+      isBookmarked
+    }
+  }
+`
+
+export { SEND_COMMENT, TOGGLE_POST_BOOKMARK }
