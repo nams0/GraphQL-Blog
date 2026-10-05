@@ -8,11 +8,24 @@ import {
   Typography,
   Divider,
   Button,
+  IconButton,
 } from "@mui/material"
+
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined"
+import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined"
 
 import { Link } from "react-router-dom"
 
-function CardEL({ title, slug, coverPhoto, author, height = "370px" }) {
+function CardEL({
+  title,
+  slug,
+  coverPhoto,
+  author,
+  isBookmarked,
+  height = "370px",
+}) {
+  const toggleBookmark = () => {}
+
   return (
     <Card
       sx={{
@@ -37,7 +50,7 @@ function CardEL({ title, slug, coverPhoto, author, height = "370px" }) {
 
       <CardMedia
         component="img"
-        height="194"
+        height="180"
         image={coverPhoto.url}
         alt={slug}
       />
@@ -62,6 +75,18 @@ function CardEL({ title, slug, coverPhoto, author, height = "370px" }) {
       <Divider variant="middle" sx={{ margin: "10px" }} />
 
       <CardActions>
+        <IconButton
+          sx={{ marginLeft: 1 }}
+          color={isBookmarked ? "primary" : "default"}
+          onClick={() => toggleBookmark()}
+          aria-label={isBookmarked ? "حذف نشان" : "افزودن نشان"}
+        >
+          {isBookmarked ? (
+            <BookmarkOutlinedIcon />
+          ) : (
+            <BookmarkBorderOutlinedIcon />
+          )}
+        </IconButton>
         <Link
           to={`/blogs/${slug}`}
           style={{ textDecoration: "none", width: "100%" }}
