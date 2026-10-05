@@ -27,30 +27,37 @@ function CardEL({
   isBookmarked,
   height = "370px",
 }) {
-  const [toggleBookmarkMutation] = useMutation(TOGGLE_POST_BOOKMARK, {
-    // update cache so all components using this post re-render
-    update(cache, { data }) {
-      cache.modify({
-        id: cache.identify({ __typename: "Post", id }),
-        fields: {
-          isBookmarked: () => data.updatePost.isBookmarked,
-        },
-      })
+  const [toggleBookmarkMutation] = useMutation(
+    TOGGLE_POST_BOOKMARK,
+    {
+      update(cache, { data }) {
+        // update cache so all components using this post re-render
+        if (!data?.publishPost) return
+        cache.modify({
+          id: cache.identify({ __typename: "Post", id }),
+          fields: {
+            isBookmarked: () => data.publishPost.isBookmarked,
+          },
+        })
+      },
     },
-  })
+  )
 
   const toggleBookmark = () => {
     toggleBookmarkMutation({
-      variables: {
-        slug,
-        isBookmarked: !isBookmarked, // flip the current value
-      },
+      variables: { slug, isBookmarked: !isBookmarked },
       optimisticResponse: {
         updatePost: {
           __typename: "Post",
           id,
           slug,
-          isBookmarked: !isBookmarked, // UI updates immediately
+          isBookmarked: !isBookmarked,
+        },
+        publishPost: {
+          __typename: "Post",
+          id,
+          slug,
+          isBookmarked: !isBookmarked,
         },
       },
     })

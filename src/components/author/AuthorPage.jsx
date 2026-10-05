@@ -69,6 +69,7 @@ function AuthorPage() {
                   slug={post.slug}
                   coverPhoto={post.coverPhoto}
                   isBookmarked={post.isBookmarked}
+                  id={post.id}
                 />
               </Grid>
             ))}

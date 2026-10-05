@@ -27,6 +27,11 @@ const TOGGLE_POST_BOOKMARK = gql`
       slug
       isBookmarked
     }
+    publishPost(where: { slug: $slug }) {
+      id
+      slug
+      isBookmarked
+    }
   }
 `
 
