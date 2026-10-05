@@ -15,8 +15,11 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import BookmarkOutlinedIcon from "@mui/icons-material/BookmarkOutlined"
 
 import { Link } from "react-router-dom"
+import { useMutation } from "@apollo/client/react"
+import { TOGGLE_POST_BOOKMARK } from "../../graphql/mutations"
 
 function CardEL({
+  id,
   title,
   slug,
   coverPhoto,
@@ -24,7 +27,34 @@ function CardEL({
   isBookmarked,
   height = "370px",
 }) {
-  const toggleBookmark = () => {}
+  const [toggleBookmarkMutation] = useMutation(TOGGLE_POST_BOOKMARK, {
+    // update cache so all components using this post re-render
+    update(cache, { data }) {
+      cache.modify({
+        id: cache.identify({ __typename: "Post", id }),
+        fields: {
+          isBookmarked: () => data.updatePost.isBookmarked,
+        },
+      })
+    },
+  })
+
+  const toggleBookmark = () => {
+    toggleBookmarkMutation({
+      variables: {
+        slug,
+        isBookmarked: !isBookmarked, // flip the current value
+      },
+      optimisticResponse: {
+        updatePost: {
+          __typename: "Post",
+          id,
+          slug,
+          isBookmarked: !isBookmarked, // UI updates immediately
+        },
+      },
+    })
+  }
 
   return (
     <Card
