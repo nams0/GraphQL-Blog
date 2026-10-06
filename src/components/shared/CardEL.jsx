@@ -9,6 +9,7 @@ import {
   Divider,
   Button,
   IconButton,
+  Tooltip,
 } from "@mui/material"
 
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined"
@@ -27,21 +28,18 @@ function CardEL({
   isBookmarked,
   height = "370px",
 }) {
-  const [toggleBookmarkMutation] = useMutation(
-    TOGGLE_POST_BOOKMARK,
-    {
-      update(cache, { data }) {
-        // update cache so all components using this post re-render
-        if (!data?.publishPost) return
-        cache.modify({
-          id: cache.identify({ __typename: "Post", id }),
-          fields: {
-            isBookmarked: () => data.publishPost.isBookmarked,
-          },
-        })
-      },
+  const [toggleBookmarkMutation] = useMutation(TOGGLE_POST_BOOKMARK, {
+    update(cache, { data }) {
+      // update cache so all components using this post re-render
+      if (!data?.publishPost) return
+      cache.modify({
+        id: cache.identify({ __typename: "Post", id }),
+        fields: {
+          isBookmarked: () => data.publishPost.isBookmarked,
+        },
+      })
     },
-  )
+  })
 
   const toggleBookmark = () => {
     toggleBookmarkMutation({
@@ -112,18 +110,20 @@ function CardEL({
       <Divider variant="middle" sx={{ margin: "10px" }} />
 
       <CardActions>
-        <IconButton
-          sx={{ marginLeft: 1 }}
-          color={isBookmarked ? "primary" : "default"}
-          onClick={() => toggleBookmark()}
-          aria-label={isBookmarked ? "حذف نشان" : "افزودن نشان"}
-        >
-          {isBookmarked ? (
-            <BookmarkOutlinedIcon />
-          ) : (
-            <BookmarkBorderOutlinedIcon />
-          )}
-        </IconButton>
+        <Tooltip title={isBookmarked ? "حذف نشان" : "افزودن نشان"} arrow>
+          <IconButton
+            sx={{ marginLeft: 1 }}
+            color={isBookmarked ? "primary" : "default"}
+            onClick={() => toggleBookmark()}
+            aria-label={isBookmarked ? "حذف نشان" : "افزودن نشان"}
+          >
+            {isBookmarked ? (
+              <BookmarkOutlinedIcon />
+            ) : (
+              <BookmarkBorderOutlinedIcon />
+            )}
+          </IconButton>
+        </Tooltip>
         <Link
           to={`/blogs/${slug}`}
           style={{ textDecoration: "none", width: "100%" }}
