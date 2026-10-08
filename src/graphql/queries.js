@@ -5,6 +5,7 @@ const GET_BLOGS_INFO = gql`
     posts {
       isBookmarked
       author {
+        slug
         name
         avatar {
           url

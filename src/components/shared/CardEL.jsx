@@ -73,14 +73,22 @@ function CardEL({
       }}
     >
       {author && (
-        <CardHeader
-          avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
-          title={
-            <Typography component="p" sx={{ color: "text.secondary" }}>
-              {author.name}
-            </Typography>
-          }
-        />
+        <Link to={`/authors/${author.slug}`} style={{ textDecoration: "none" }}>
+          <CardHeader
+            avatar={<Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />}
+            title={
+              <Typography
+                component="p"
+                sx={{
+                  color: "text.secondary",
+                  "&:hover": { color: "primary.main" },
+                }}
+              >
+                {author.name}
+              </Typography>
+            }
+          />
+        </Link>
       )}
 
       <CardMedia
