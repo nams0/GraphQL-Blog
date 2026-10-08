@@ -8,6 +8,7 @@ import sanitizeHtml from "sanitize-html"
 import CommentForm from "../comment/CommentForm"
 import Comments from "../comment/Comments"
 import { useEffect } from "react"
+import NotFound from "../shared/NotFound"
 
 function BlogPage() {
   const { slug } = useParams()
@@ -26,6 +27,7 @@ function BlogPage() {
 
   if (loading) return <Loader />
   if (errors) return <h3>We got an error...</h3>
+  if (!data?.post) return <NotFound />
 
   const {
     post: { title, coverPhoto, author, content },

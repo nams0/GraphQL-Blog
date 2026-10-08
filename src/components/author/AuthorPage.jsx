@@ -8,6 +8,7 @@ import sanitizeHtml from "sanitize-html"
 
 import CardEL from "../shared/CardEL"
 import Loader from "../shared/Loader"
+import NotFound from "../shared/NotFound"
 
 function AuthorPage() {
   const { slug } = useParams()
@@ -17,8 +18,8 @@ function AuthorPage() {
 
   if (loading) return <Loader />
   if (errors) return <h3>We got an error...</h3>
+  if (!data?.author) return <NotFound />
 
-  console.log(data)
   const {
     author: { name, field, avatar, description, posts },
   } = data
