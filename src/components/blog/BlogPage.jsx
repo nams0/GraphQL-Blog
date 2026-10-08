@@ -7,6 +7,7 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded"
 import sanitizeHtml from "sanitize-html"
 import CommentForm from "../comment/CommentForm"
 import Comments from "../comment/Comments"
+import { useEffect } from "react"
 
 function BlogPage() {
   const { slug } = useParams()
@@ -14,6 +15,14 @@ function BlogPage() {
     variables: { slug },
   })
   const navigate = useNavigate()
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    })
+  }, [slug])
 
   if (loading) return <Loader />
   if (errors) return <h3>We got an error...</h3>
