@@ -94,9 +94,16 @@ Invalid submissions trigger a **toast warning** instead of sending the mutation.
 
 ## 📸 Screenshots
 
+![Home Page](./docs/home-page.png)
+![Bookmarks](./docs/bookmark.png)
+![Post Page](./docs/post-page.png)
+![Author Page](./docs/author-page.png)
+![Not Found Page](./docs/not-found.png)
+![Home Page Mobile View](./docs/home-page-mobile.png)
+
 ---
 
-## 🙏 Acknowledgements
+## 🧰 Built With
 
 - [Material UI](https://mui.com/) — for the component library
 - [Apollo Client](https://www.apollographql.com/) — for GraphQL state management
