@@ -94,11 +94,28 @@ Invalid submissions trigger a **toast warning** instead of sending the mutation.
 
 ## 📸 Screenshots
 
+### Home Page
+
 ![Home Page](./docs/home-page.png)
+
+### Bookmarks
+
 ![Bookmarks](./docs/bookmark.png)
+
+### Post Page
+
 ![Post Page](./docs/post-page.png)
+
+### Author Page
+
 ![Author Page](./docs/author-page.png)
+
+### Not Found Page
+
 ![Not Found Page](./docs/not-found.png)
+
+### Home Page Mobile View
+
 ![Home Page Mobile View](./docs/home-page-mobile.png)
 
 ---
